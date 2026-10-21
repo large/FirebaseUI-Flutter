@@ -739,6 +739,10 @@ class ProfileScreen extends MultiProviderScreen {
   /// shown under the avatar.
   final bool showDisplayName;
 
+  /// The space above the row of linked sign-in methods, the first row under
+  /// the avatar.
+  final double linkedProvidersSpacing;
+
   /// Indicates wether a confirmation dialog should be shown when the user
   /// tries to unlink a provider.
   final bool showUnlinkConfirmationDialog;
@@ -764,6 +768,7 @@ class ProfileScreen extends MultiProviderScreen {
     this.actionCodeSettings,
     this.showMFATile = false,
     this.showDisplayName = true,
+    this.linkedProvidersSpacing = 32,
     this.showUnlinkConfirmationDialog = false,
     this.showDeleteConfirmationDialog = false,
     this.deleteConfirmation,
@@ -859,7 +864,7 @@ class ProfileScreen extends MultiProviderScreen {
             }
 
             return Padding(
-              padding: const EdgeInsets.only(top: 32),
+              padding: EdgeInsets.only(top: linkedProvidersSpacing),
               child: _LinkedProvidersRow(
                 auth: auth,
                 providers: linkedProviders,
