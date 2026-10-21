@@ -735,6 +735,10 @@ class ProfileScreen extends MultiProviderScreen {
   /// are ignored.
   final Widget? avatar;
 
+  /// Indicates whether the user's display name (and its edit button) is
+  /// shown under the avatar.
+  final bool showDisplayName;
+
   /// Indicates wether a confirmation dialog should be shown when the user
   /// tries to unlink a provider.
   final bool showUnlinkConfirmationDialog;
@@ -759,6 +763,7 @@ class ProfileScreen extends MultiProviderScreen {
     this.cupertinoNavigationBar,
     this.actionCodeSettings,
     this.showMFATile = false,
+    this.showDisplayName = true,
     this.showUnlinkConfirmationDialog = false,
     this.showDeleteConfirmationDialog = false,
     this.deleteConfirmation,
@@ -828,7 +833,7 @@ class ProfileScreen extends MultiProviderScreen {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         avatarWidget,
-        Align(child: EditableUserDisplayName(auth: auth)),
+        if (showDisplayName) Align(child: EditableUserDisplayName(auth: auth)),
         if (!user.emailVerified) ...[
           RebuildScope(
             builder: (context) {
